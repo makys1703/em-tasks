@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Action" ALTER COLUMN "action" SET DATA TYPE VARCHAR(64);

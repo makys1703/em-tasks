@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productBalanceRouter = void 0;
+const express_1 = require("express");
+const productBalance_controller_1 = require("../controllers/productBalance.controller");
+const jsonParser_middleware_1 = require("../middlewares/jsonParser.middleware");
+const createProductBalance_validator_1 = require("../validators/productBalance/createProductBalance.validator");
+const getProductBalanceByFiltersValidator_1 = require("../validators/productBalance/getProductBalanceByFiltersValidator");
+const changeProductBalance_validator_1 = require("../validators/productBalance/changeProductBalance.validator");
+exports.productBalanceRouter = (0, express_1.Router)();
+exports.productBalanceRouter.get("/product_balance" /* Routes.productBalance */, getProductBalanceByFiltersValidator_1.getProductBalanceByFiltersValidator, productBalance_controller_1.productBalanceController.getProductBalanceByFilters);
+exports.productBalanceRouter.post("/product_balance" /* Routes.productBalance */, jsonParser_middleware_1.jsonParserMiddleware, createProductBalance_validator_1.createProductBalanceValidator, productBalance_controller_1.productBalanceController.createProductBalance);
+exports.productBalanceRouter.put(`${"/product_balance" /* Routes.productBalance */}/increase`, jsonParser_middleware_1.jsonParserMiddleware, changeProductBalance_validator_1.changeProductBalanceValidator, productBalance_controller_1.productBalanceController.increaseProductBalance);
+exports.productBalanceRouter.put(`${"/product_balance" /* Routes.productBalance */}/decrease`, jsonParser_middleware_1.jsonParserMiddleware, changeProductBalance_validator_1.changeProductBalanceValidator, productBalance_controller_1.productBalanceController.decreaseProductBalance);

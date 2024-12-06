@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productRouter = void 0;
+const express_1 = require("express");
+const product_controller_1 = require("../controllers/product.controller");
+const jsonParser_middleware_1 = require("../middlewares/jsonParser.middleware");
+const transformQueryParams_middleware_1 = require("../middlewares/transformQueryParams.middleware");
+const createProduct_validator_1 = require("../validators/product/createProduct.validator");
+const getProductsByFilters_validator_1 = require("../validators/product/getProductsByFilters.validator");
+exports.productRouter = (0, express_1.Router)();
+exports.productRouter.get("/product" /* Routes.product */, transformQueryParams_middleware_1.transformQueryParamsMiddleware, getProductsByFilters_validator_1.getProductsByFiltersValidator, product_controller_1.productController.getProductsByFilters);
+exports.productRouter.post("/product" /* Routes.product */, jsonParser_middleware_1.jsonParserMiddleware, createProduct_validator_1.createProductValidator, product_controller_1.productController.createProduct);
