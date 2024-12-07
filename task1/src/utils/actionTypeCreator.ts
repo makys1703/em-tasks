@@ -1,14 +1,14 @@
 export const actionTypeCreator = {
-  createProduct: () => 'API: create product',
-  createProductBalance: () => 'API: create product balance',
+  createProduct: () => 'Create product',
+  createProductBalance: () => 'Create product balance',
   increaseProductBalance: (
     forOrder: boolean,
     amount: number,
     result: number
   ) =>
     forOrder
-      ? `API: increase order product balance by ${amount} => ${result}`
-      : `API: increase product balance by ${amount} => ${result}`,
+      ? `Increase order product balance by ${amount} => ${result}`
+      : `Increase product balance by ${amount} => ${result}`,
 
   decreaseProductBalance: (
     forOrder: boolean,
@@ -16,6 +16,6 @@ export const actionTypeCreator = {
     result: number
   ) =>
     forOrder
-      ? `API: decrease order product balance by ${amount} => ${result}`
-      : `API: decrease product balance by ${amount} => ${result}`
+      ? `Decrease order product balance by ${amount} => ${result}`
+      : `Decrease product balance by ${amount} => ${result}`
 };

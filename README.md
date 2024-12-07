@@ -12,7 +12,7 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 
 ### Запуск миграции:
 ```shell
-psql database_name < ./task1/data.sql
+psql database_name < ./task1/data/data.sql
 ```
 
 ### Эндпоинты
@@ -91,7 +91,7 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 
 ### Запуск миграции:
 ```shell
-psql database_name < ./task2/data.sql
+psql database_name < ./task2/data/data.sql
 ```
 
 ### Эндпоинты
@@ -131,7 +131,7 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 
 ### Запуск миграции:
 ```shell
-psql database_name < ./task3/data.sql
+psql database_name < ./task3/data/data.sql
 ```
 
 ### Эндпоинты

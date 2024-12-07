@@ -26,7 +26,7 @@ export class ActionApiService {
       const response = await fetch(url, { method: HttpMethod.Options });
       console.log(`[ ${endpoint} ] STATUS: `, response.status);
 
-      if (response.status !== 200) {
+      if (response.status !== HttpStatus.Ok) {
         throw new Error(
           actionApiServiceErrors.statusCheck(endpoint, String(response.status))
         );
@@ -60,8 +60,6 @@ export class ActionApiService {
       },
       body: JSON.stringify(body)
     });
-
-    console.log('RESPONSE IN PUSH:', response);
 
     if (
       response.status !== HttpStatus.Created &&
