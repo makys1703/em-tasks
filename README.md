@@ -91,7 +91,7 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 
 ### Запуск миграции:
 ```shell
-psql database_name < "./task2 (run first)/data"
+psql database_name < "./task2 (run first)/data/data.sql"
 ```
 
 ### Эндпоинты
