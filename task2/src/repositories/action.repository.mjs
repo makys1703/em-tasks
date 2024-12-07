@@ -17,7 +17,8 @@ class ActionRepository {
           shopId: filters.shopId ?? undefined,
           action: filters.action
             ? {
-                contains: filters.action
+                contains: filters.action,
+                mode: 'insensitive'
               }
             : undefined,
           date:

@@ -11,12 +11,6 @@ export const getProductsByFiltersValidator: RequestHandler<
 > = async (req, res, next) => {
   const { plu, name } = req.query;
 
-  if (!plu && !name) {
-    console.log('EMPTY FILTERS');
-    res.sendStatus(HttpStatus.BadRequest);
-    return;
-  }
-
   const query = new GetProductsByQueryFiltersDto();
   query.plu = plu;
   query.name = name;
