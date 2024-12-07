@@ -4,13 +4,11 @@ import { actionApiServiceConfig } from '../configs/actionApiService.config';
 import { actionApiServiceErrors } from '../errors/actionApiService.errors';
 import { HttpStatus } from '../utils/httpStatus';
 import { HttpMethod } from '../utils/httpMethod';
+import { ActionDto } from '../dto/action/action.dto';
 
-type ActionRequest<B, Q> = {
+type ActionRequest = {
   endpoint: string;
-  body?: B extends object ? object : undefined;
-  queryParams?: Q extends Record<string, string>
-    ? Record<string, string>
-    : undefined;
+  body: ActionDto
 };
 
 export class ActionApiService {
@@ -34,24 +32,15 @@ export class ActionApiService {
     });
   }
 
-  async send<B extends object, Q extends Record<string, string>>({
-    endpoint,
-    body,
-    queryParams
-  }: ActionRequest<B, Q>) {
+  async send({ endpoint, body }: ActionRequest) {
+
     if (!this.endpoints[endpoint]) {
       throw new Error(actionApiServiceErrors.incorrectEndpoint(endpoint));
     }
 
     const { method } = this.endpoints[endpoint];
 
-    const url = new URL(endpoint ?? '/', this.origin);
-
-    if (queryParams && Object.keys(queryParams)) {
-      Object.entries(queryParams).forEach(([key, value]) => {
-        url.searchParams.append(key, value);
-      });
-    }
+    const url = new URL(endpoint, this.origin);
 
     const response = await fetch(url, {
       method,
