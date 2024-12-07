@@ -73,6 +73,12 @@ class ProductBalanceRepository {
           }
         },
         where: {
+          count: forOrder ? undefined : {
+            gte: amount
+          },
+          orderCount: !forOrder ? undefined : {
+            gte: amount
+          },
           productPlu_shopId: {
             productPlu: productPlu,
             shopId: shopId

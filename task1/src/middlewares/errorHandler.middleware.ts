@@ -8,6 +8,12 @@ export const errorHandlerMiddleware: ErrorRequestHandler = (
   next
 ) => {
   console.error('ERROR HANDLER -> catched');
-  console.error(err);
+  
+  if (err instanceof Error) {
+    console.error(err.message);
+  } else {
+    console.error(err);
+  }
+
   res.sendStatus(HttpStatus.ServerError);
 };

@@ -12,21 +12,6 @@ class ActionController {
     }
   }
 
-  async getActions(req, res, next) {
-    try {
-      const response = await actionRepository.getActions();
-
-      if (!response.length) {
-        res.sendStatus(httpStatus.notFound);
-        return;
-      }
-
-      res.send(response);
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async getActionsByFilters(req, res, next) {
     try {
       console.log('getActionsByFilters: ', req.query);
