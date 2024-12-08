@@ -1,11 +1,11 @@
 const ERROR_TITLE = 'Action API connection error';
 
 export const actionApiServiceErrors = {
-  statusCheck: (endpoint: string, status: string) =>
-    `${ERROR_TITLE}: [ ${endpoint} ] got status ${status}`,
+  statusCheck: (endpoint: string) =>
+    `${ERROR_TITLE} -> cannot connect to endpoint [ ${endpoint} ]`,
 
   incorrectEndpoint: (endpoint: string) =>
-    `${ERROR_TITLE}: incorrectEndpoint [ ${endpoint} ]`,
+    `${ERROR_TITLE} -> incorrectEndpoint [ ${endpoint} ]`,
 
-  send: () => `${ERROR_TITLE}: cannot send action data`
+  send: () => `${ERROR_TITLE} -> cannot send action data`
 };

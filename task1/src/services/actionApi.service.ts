@@ -2,14 +2,8 @@ import { ActionApiServiceEndpoints } from '../types/actionApiServiceEndpoints.ty
 import { ActionApiServiceConfig } from '../types/actionApiServiceConfig.type';
 import { actionApiServiceConfig } from '../configs/actionApiService.config';
 import { actionApiServiceErrors } from '../errors/actionApiService.errors';
-import { HttpStatus } from '../utils/httpStatus';
 import { HttpMethod } from '../utils/httpMethod';
-import { ActionDto } from '../dto/action/action.dto';
-
-type ActionRequest = {
-  endpoint: string;
-  body: ActionDto
-};
+import { ActionRequest } from '../types/actionRequest.type';
 
 export class ActionApiService {
   origin: string;
@@ -24,16 +18,13 @@ export class ActionApiService {
       const response = await fetch(url, { method: HttpMethod.Options });
       console.log(`[ ${endpoint} ] STATUS: `, response.status);
 
-      if (response.status !== HttpStatus.Ok) {
-        throw new Error(
-          actionApiServiceErrors.statusCheck(endpoint, String(response.status))
-        );
+      if (!response.ok) {
+        throw new Error(actionApiServiceErrors.statusCheck(endpoint));
       }
     });
   }
 
   async send({ endpoint, body }: ActionRequest) {
-
     if (!this.endpoints[endpoint]) {
       throw new Error(actionApiServiceErrors.incorrectEndpoint(endpoint));
     }
@@ -50,10 +41,7 @@ export class ActionApiService {
       body: JSON.stringify(body)
     });
 
-    if (
-      response.status !== HttpStatus.Created &&
-      response.status !== HttpStatus.Ok
-    ) {
+    if (!response.ok) {
       throw new Error(actionApiServiceErrors.send());
     }
 

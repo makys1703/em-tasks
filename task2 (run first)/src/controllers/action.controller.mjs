@@ -14,7 +14,6 @@ class ActionController {
 
   async getActionsByFilters(req, res, next) {
     try {
-      console.log('getActionsByFilters: ', req.query);
       const response = await actionRepository.getActionsByFilters(req.query);
 
       if (!response.length) {

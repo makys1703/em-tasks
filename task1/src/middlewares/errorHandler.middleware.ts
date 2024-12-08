@@ -7,8 +7,6 @@ export const errorHandlerMiddleware: ErrorRequestHandler = (
   res,
   next
 ) => {
-  console.error('ERROR HANDLER -> catched');
-  
   if (err instanceof Error) {
     console.error(err.message);
   } else {

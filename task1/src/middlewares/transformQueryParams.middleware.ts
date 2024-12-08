@@ -13,7 +13,6 @@ export const transformQueryParamsMiddleware: RequestHandler<
     let value = req.query[key];
 
     if (typeof value === 'string') {
-      console.log(`value by key [${key}] is string. Triming...`);
       value = value.trim();
       req.query[key] = value;
     }
@@ -22,12 +21,8 @@ export const transformQueryParamsMiddleware: RequestHandler<
       continue;
     }
 
-    console.log('TransformQueryNumbersMiddleware: found number in key: ', key);
-
     req.query[key] = Number(value);
   }
-
-  console.log('REQ QUERY AFTER TRANSFORM: ', req.query);
 
   next();
 };

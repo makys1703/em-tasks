@@ -20,12 +20,11 @@ class ProductBalanceController {
       const productBalance =
         await productBalanceRepository.createProductBalance(req.body);
 
-      const actionProductBalance = await actionService.createProductBalance(
+      await actionService.createProductBalance(
         actionTypeCreator.createProductBalance(),
         productBalance
       );
 
-      console.log('actionProductBalance:', actionProductBalance);
       res.status(HttpStatus.Created);
       res.json(productBalance);
     } catch (error: unknown) {
@@ -43,7 +42,7 @@ class ProductBalanceController {
       const productBalance =
         await productBalanceRepository.increaseProductBalance(req.body);
 
-      const actionProductBalance = await actionService.createProductBalance(
+      await actionService.createProductBalance(
         actionTypeCreator.increaseProductBalance(
           req.body.forOrder,
           req.body.amount,
@@ -52,7 +51,6 @@ class ProductBalanceController {
         productBalance
       );
 
-      console.log('actionProductBalance:', actionProductBalance);
       res.status(HttpStatus.Created);
       res.json(productBalance);
     } catch (error: unknown) {
@@ -70,7 +68,7 @@ class ProductBalanceController {
       const productBalance =
         await productBalanceRepository.decreaseProductBalance(req.body);
 
-      const actionProductBalance = await actionService.createProductBalance(
+      await actionService.createProductBalance(
         actionTypeCreator.decreaseProductBalance(
           req.body.forOrder,
           req.body.amount,
@@ -79,7 +77,6 @@ class ProductBalanceController {
         productBalance
       );
 
-      console.log('actionProductBalance:', actionProductBalance);
       res.status(HttpStatus.Created);
       res.json(productBalance);
     } catch (error: unknown) {

@@ -18,10 +18,8 @@ export const getProductsByFiltersValidator: RequestHandler<
   try {
     await validateOrReject(query);
     req.query = query;
-    console.log('REQ QUERY AFTER VALIDATING: ', req.query);
     next();
   } catch (error) {
-    console.log(error);
     res.sendStatus(HttpStatus.BadRequest);
   }
 };

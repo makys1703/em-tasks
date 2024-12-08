@@ -19,7 +19,6 @@ export const createProductValidator: RequestHandler<
     req.body = product;
     next();
   } catch (error) {
-    console.log(error);
     res.sendStatus(HttpStatus.BadRequest);
   }
 };

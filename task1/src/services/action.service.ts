@@ -5,8 +5,6 @@ import { actionApiService } from './actionApi.service';
 
 export class ActionService {
   async createProduct(actionType: string, product: ProductDto) {
-    console.log('ActionService -> createProduct: ', product);
-
     const action = new ActionDto();
     action.plu = product.plu;
     action.date = new Date();
@@ -18,7 +16,6 @@ export class ActionService {
         body: action
       });
     } catch (error) {
-      console.log('CATCHED -> ActionService');
       throw new Error(error as string);
     }
   }
@@ -27,8 +24,6 @@ export class ActionService {
     actionType: string,
     productBalance: ProductBalanceDto
   ) {
-    console.log('ActionService -> productBalance: ', productBalance);
-
     const action = new ActionDto();
     action.plu = productBalance.productPlu;
     action.shopId = productBalance.shopId;
@@ -41,7 +36,6 @@ export class ActionService {
         body: action
       });
     } catch (error) {
-      console.log('CATCHED -> ActionService');
       throw new Error(error as string);
     }
   }

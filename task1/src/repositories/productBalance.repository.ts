@@ -12,7 +12,6 @@ class ProductBalanceRepository {
     data: CreateProductBalanceDto
   ): Promise<ProductBalanceDto> {
     try {
-      console.log('REPO: createProductBalance dto: ', data);
       return await prisma.productBalance.create({
         data: {
           ...data,
@@ -22,7 +21,6 @@ class ProductBalanceRepository {
         }
       });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }
@@ -51,7 +49,6 @@ class ProductBalanceRepository {
         }
       });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }
@@ -73,12 +70,16 @@ class ProductBalanceRepository {
           }
         },
         where: {
-          count: forOrder ? undefined : {
-            gte: amount
-          },
-          orderCount: !forOrder ? undefined : {
-            gte: amount
-          },
+          count: forOrder
+            ? undefined
+            : {
+                gte: amount
+              },
+          orderCount: !forOrder
+            ? undefined
+            : {
+                gte: amount
+              },
           productPlu_shopId: {
             productPlu: productPlu,
             shopId: shopId
@@ -86,7 +87,6 @@ class ProductBalanceRepository {
         }
       });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }
@@ -135,7 +135,6 @@ class ProductBalanceRepository {
         }
       });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }

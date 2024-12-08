@@ -8,7 +8,11 @@ export class UserController {
 
   @Get()
   async countUsersWithProblems(): Promise<CountUsersWithProblems> {
-    return await this.userRepository.countUsersWithProblems();
+    try {
+      return await this.userRepository.countUsersWithProblems();
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   @Put()

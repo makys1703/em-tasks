@@ -24,7 +24,6 @@ export const createProductBalanceValidator: RequestHandler<
     req.body = productBalance;
     next();
   } catch (error) {
-    console.log(error);
     res.sendStatus(HttpStatus.BadRequest);
   }
 };

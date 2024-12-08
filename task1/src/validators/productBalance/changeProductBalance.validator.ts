@@ -26,7 +26,6 @@ export const changeProductBalanceValidator: RequestHandler<
     req.body = changes;
     next();
   } catch (error) {
-    console.log(error);
     res.sendStatus(HttpStatus.BadRequest);
   }
 };

@@ -8,10 +8,8 @@ const prisma = new PrismaClient();
 class ProductRepository {
   async createProduct(data: CreateProductDto): Promise<ProductDto> {
     try {
-      console.log('REPO: createProducts dto: ', data);
       return await prisma.product.create({ data });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }
@@ -21,7 +19,6 @@ class ProductRepository {
     name
   }: GetProductsByQueryFiltersDto): Promise<ProductDto[]> {
     try {
-      console.log('REPO: getProductsByFilters dto', { plu, name });
       return await prisma.product.findMany({
         where: {
           plu: {
@@ -33,7 +30,6 @@ class ProductRepository {
         }
       });
     } finally {
-      console.log('FINALLY CALLBACK');
       prisma.$disconnect();
     }
   }

@@ -16,11 +16,10 @@ class ProductController {
   > = async (req, res, next) => {
     try {
       const product = await productRepository.createProduct(req.body);
-      const productAction = await actionService.createProduct(
+      await actionService.createProduct(
         actionTypeCreator.createProduct(),
         product
       );
-      console.log('productAction: ', productAction);
 
       res.status(HttpStatus.Created);
       res.json(product);
@@ -36,7 +35,6 @@ class ProductController {
     GetProductsByQueryFiltersDto
   > = async (req, res, next) => {
     try {
-      console.log('CONTROLLER: getProductsByFilters', req.query);
       const products = await productRepository.getProductsByFilters(req.query);
 
       if (!products.length) {

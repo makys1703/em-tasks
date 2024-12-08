@@ -40,7 +40,6 @@ export const getProductBalanceByFiltersValidator: RequestHandler<
     query.orderCountTo < query.orderCountFrom;
 
   if (isBadCountValue || isBadOrderCountValue) {
-    console.log('VALIDATING: BAD COUNT VALUES', req.query);
     res.sendStatus(HttpStatus.BadRequest);
     return;
   }
@@ -48,10 +47,8 @@ export const getProductBalanceByFiltersValidator: RequestHandler<
   try {
     await validateOrReject(query);
     req.query = query;
-    console.log('REQ QUERY AFTER VALIDATING: ', req.query);
     next();
   } catch (error) {
-    console.log(error);
     res.sendStatus(HttpStatus.BadRequest);
   }
 };
